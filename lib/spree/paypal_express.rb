@@ -170,7 +170,7 @@ module Spree::PaypalExpress
       # see http://www.pdncommunity.com/t5/PayPal-Developer-Blog/Displaying-Order-Details-in-Express-Checkout/bc-p/92902#C851
     }
   end
-  
+
   # hook to override paypal site options
   def paypal_site_opts
     {}
@@ -242,7 +242,7 @@ module Spree::PaypalExpress
   end
 
   def address_options(order)
-    if payment_method.preferred_no_shipping 
+    if payment_method.preferred_no_shipping
       { :no_shipping => true }
     else
       {
@@ -306,6 +306,7 @@ module Spree::PaypalExpress
     msg = "#{I18n.t('gateway_error')} ... #{text}"
     logger.error(msg)
     flash[:error] = msg
+    render 'edit'
   end
 
   # create the gateway from the supplied options
